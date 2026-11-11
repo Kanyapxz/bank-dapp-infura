@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Bank DApp | 66032860</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
+
+    :root {
+      font-family: 'Prompt', sans-serif;
+      color: #f6eee7;
+      background: #1f1714;
+      --turquoise: #59d0c8;
+      --cream: #f4e6d8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 5% 2%, #59d0c819, transparent 35%),
+        radial-gradient(circle at 95% 5%, #b88b6726, transparent 35%),
+        linear-gradient(160deg, #1b1513, #291d19 68%, #1d1613);
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: .48;
+      cursor: not-allowed;
+    }
+
+    .wrap {
+      width: min(1080px, calc(100% - 36px));
+      margin: auto;
+      padding: 48px 0;
+    }
+
+    .top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo {
+      display: grid;
+      place-items: center;
+      width: 62px;
+      height: 62px;
+      background: linear-gradient(135deg, #b8f4ec, #59d0c8);
+      border-radius: 20px;
+      font-size: 33px;
+      color: #1d3a37;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: .17em;
+      color: #bca69c;
+    }
+
+    h1 {
+      font-size: 31px;
+      margin: 2px 0 0;
+      color: #fff7ed;
+    }
+
+    .network {
+      font-size: 12px;
+      border: 1px solid #397b73;
+      border-radius: 999px;
+      background: #22413b;
+      color: #a5f6ed;
+      padding: 10px 17px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 22px;
+    }
+
+    .card {
+      background: linear-gradient(155deg, #3b2b24, #291f1b);
+      border: 1px solid #ffffff19;
+      padding: 29px;
+      border-radius: 26px;
+      box-shadow: 0 18px 50px #110b0950;
+    }
+
+    .student {
+      margin: 0 0 27px;
+      font-size: 14px;
+      color: #e2d1c4;
+    }
+
+    .student strong {
+      color: #fff7ec;
+    }
+
+    .balance-label {
+      font-size: 13px;
+      color: #ccb8a9;
+    }
+
+    .balance {
+      font-size: clamp(32px, 4vw, 51px);
+      font-weight: 650;
+      margin: 12px 0 5px;
+      color: #fff9f2;
+      overflow-wrap: anywhere;
+    }
+
+    .balance small {
+      font-size: 19px;
+      color: #8be8df;
+    }
+
+    .muted {
+      font-size: 12px;
+      line-height: 1.8;
+      color: #c6b3a5;
+    }
+
+    .rule {
+      border: 0;
+      border-top: 1px solid #59453b;
+      margin: 24px 0;
+    }
+
+    .label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 10px;
+      color: #f1dfd0;
+    }
+
+    .input {
+      width: 100%;
+      background: #201916;
+      border: 1px solid #655047;
+      border-radius: 14px;
+      color: #fff9f2;
+      padding: 15px 16px;
+      outline: none;
+    }
+
+    .input:focus {
+      border-color: var(--turquoise);
+      box-shadow: 0 0 0 3px #59d0c822;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .btn {
+      border: 1px solid transparent;
+      padding: 14px 15px;
+      border-radius: 14px;
+      font-size: 13px;
+      font-weight: 650;
+      transition: .15s;
+    }
+
+    .btn:not(:disabled):hover {
+      filter: brightness(1.07);
+      transform: translateY(-1px);
+    }
+
+    .primary {
+      background: linear-gradient(115deg, #59d0c8, #8de6db);
+      color: #153532;
+    }
+
+    .secondary {
+      background: #705141;
+      color: #fff5eb;
+      border-color: #886652;
+    }
+
+    .outline {
+      background: transparent;
+      border-color: #688b7e;
+      color: #bbf2e9;
+    }
+
+    .full {
+      width: 100%;
+    }
+
+    .section-title {
+      font-size: 17px;
+      color: #fff1e4;
+      margin: 0 0 17px;
+    }
+
+    .wallet-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 15px 0;
+      border-bottom: 1px solid #554238;
+    }
+
+    .wallet-value {
+      color: #f4e8dc;
+      font-size: 12px;
+      text-align: right;
+      word-break: break-word;
+    }
+
+    .status {
+      padding: 15px 16px;
+      min-height: 59px;
+      background: #221a17;
+      border: 1px solid #58463b;
+      border-radius: 14px;
+      color: #e8d8cc;
+      font-size: 12px;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+      white-space: pre-wrap;
+    }
+
+    .status.success {
+      border-color: #3e887a;
+      background: #1b3b35;
+      color: #baf9ed;
+    }
+
+    .status.error {
+      border-color: #b36c72;
+      background: #452a2b;
+      color: #ffdcda;
+    }
+
+    .smallgap {
+      margin-top: 12px;
+    }
+
+    .foot {
+      color: #a58f82;
+      text-align: center;
+      font-size: 12px;
+      margin-top: 30px;
+    }
+
+    a {
+      color: #8ce5dc;
+      word-break: break-all;
+      text-decoration: none;
+    }
+
+    @media (max-width: 780px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .wrap {
+        padding-top: 22px;
+      }
+
+      .card {
+        padding: 23px;
+      }
+
+      .balance {
+        font-size: 39px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .actions {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+
+    <header class="top">
+      <div class="brand">
+        <div class="logo">◈</div>
+        <div>
+          <div class="eyebrow">• BANK DAPP</div>
+          <h1>Bank DApp</h1>
+        </div>
+      </div>
+      <div class="network" id="networkBadge">
+        ● Sepolia Testnet
+      </div>
+    </header>
+
+    <div class="grid">
+
+      <section class="card">
+        <p class="student">
+          <strong>กัลญาพร เพ็งอารีย์</strong>
+          &nbsp;·&nbsp;
+          รหัสนักศึกษา <strong>66032860</strong>
+        </p>
+
+        <div class="balance-label">
+          ยอดเงินฝากใน Smart Contract ของบัญชีนี้
+        </div>
+
+        <div class="balance" id="balance">
+          — <small>ETH</small>
+        </div>
+
+        <p class="muted">
+          ยอดเงินนี้แยกจากยอด Sepolia ETH ใน MetaMask
+        </p>
+
+        <button class="btn outline full" id="balanceBtn" disabled>
+          ↻ ตรวจสอบยอดเงิน (Check Balance)
+        </button>
+
+        <hr class="rule">
+
+        <label class="label" for="amount">
+          จำนวนเงิน (Sepolia ETH)
+        </label>
+
+        <input class="input" id="amount" type="text" inputmode="decimal" placeholder="ตัวอย่าง: 0.001"
+          autocomplete="off">
+
+        <div class="actions">
+          <button class="btn primary" id="depositBtn" disabled>
+            ↓ ฝากเงิน (Deposit)
+          </button>
+
+          <button class="btn secondary" id="withdrawBtn" disabled>
+            ↑ ถอนเงิน (Withdraw)
+          </button>
+        </div>
+
+        <p class="muted">
+          ฝากและถอนด้วย Sepolia ETH ทดสอบเท่านั้น
+          ทุกธุรกรรมมีค่า Gas ทดสอบ
+        </p>
+      </section>
+
+      <section class="card">
+        <h2 class="section-title">
+          กระเป๋าและการเชื่อมต่อ
+        </h2>
+
+        <button class="btn primary full" id="connectBtn">
+          เชื่อมต่อ MetaMask
+        </button>
+
+        <div class="wallet-row">
+          <span class="muted">สถานะกระเป๋า</span>
+          <span class="wallet-value" id="walletState">
+            ยังไม่เชื่อมต่อ
+          </span>
+        </div>
+
+        <div class="wallet-row">
+          <span class="muted">Wallet Address</span>
+          <span class="wallet-value" id="walletAddress">—</span>
+        </div>
+
+        <div class="wallet-row">
+          <span class="muted">เครือข่าย</span>
+          <span class="wallet-value" id="chain">
+            Sepolia (11155111)
+          </span>
+        </div>
+
+        <hr class="rule">
+
+        <h2 class="section-title">สถานะธุรกรรม</h2>
+
+        <div id="status" class="status" role="status" aria-live="polite">
+          เชื่อมต่อ MetaMask เพื่อเริ่มใช้งาน
+        </div>
+
+        <p class="muted smallgap" id="txLink"></p>
+
+        <hr class="rule">
+
+        <h2 class="section-title">Smart Contract</h2>
+
+        <div class="muted">Bank.sol • Sepolia</div>
+
+        <a href="https://sepolia.etherscan.io/address/0x9d17680402c8c4BA01402e71C02D1a87202c26a2" target="_blank"
+          rel="noopener noreferrer">
+          0x9d17680402c8c4BA01402e71C02D1a87202c26a2
+        </a>
+      </section>
+    </div>
+
+    <div class="foot">
+      Assignment · DApp Architecture · Sepolia Testnet
+    </div>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.5/dist/ethers.umd.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/web3@4.16.0/dist/web3.min.js"></script>
+  <script>
+    (() => {
+      "use strict";
+
+      const CONTRACT_ADDRESS =
+        "0x9d17680402c8c4BA01402e71C02D1a87202c26a2";
+
+      const SEPOLIA_CHAIN_ID = 11155111n;
+
+      // Infura RPC สำหรับเครือข่าย Sepolia
+      const INFURA_URL =
+        "https://sepolia.infura.io/v3/7b08a9b5117d4555967fc6dc8c1865cd";
+
+      // เชื่อมต่อ Blockchain ผ่าน Infura
+      const infuraWeb3 = new Web3(
+        new Web3.providers.HttpProvider(INFURA_URL)
+      );
+
+      const ABI = [
+        "function deposit() payable",
+        "function withdraw(uint256 amount)",
+        "function checkBlance() view returns (uint256)"
+      ];
+
+      // ABI สำหรับ Web3.js
+      const INFURA_ABI = [
+        {
+          inputs: [],
+          name: "checkBlance",
+          outputs: [
+            { name: "balance", type: "uint256" }
+          ],
+          stateMutability: "view",
+          type: "function"
+        }
+      ];
+
+      // สร้าง Smart Contract Instance ผ่าน Infura
+      const infuraContract = new infuraWeb3.eth.Contract(
+        INFURA_ABI,
+        CONTRACT_ADDRESS
+      );
+
+      // ทดสอบการเชื่อมต่อกับ Sepolia
+      async function testInfuraConnection() {
+        try {
+          const chainId = await infuraWeb3.eth.getChainId();
+
+          if (chainId !== 11155111n) {
+            throw new Error("Infura ไม่ได้เชื่อมต่อ Sepolia");
+          }
+
+          console.log("Infura Connected Successfully");
+          console.log("Chain ID:", chainId.toString());
+
+        } catch (error) {
+          console.error("Infura Connection Error:", error);
+        }
+      }
+
+      testInfuraConnection();
+
+      const $ = id => document.getElementById(id);
+
+      let provider;
+      let signer;
+      let contract;
+      let connectedAddress;
+      let busy = false;
+
+      const buttons = [
+        "depositBtn",
+        "withdrawBtn",
+        "balanceBtn"
+      ];
+
+      function status(message, type = "") {
+        $("status").textContent = message;
+        $("status").className = "status " + type;
+      }
+
+      function ready(value) {
+        buttons.forEach(id => {
+          $(id).disabled = !value || busy;
+        });
+      }
+
+      function busyState(value) {
+        busy = value;
+        ready(Boolean(contract));
+        $("connectBtn").disabled = value;
+      }
+
+      function cleanError(err) {
+        if (
+          err?.code === 4001 ||
+          err?.code === "ACTION_REJECTED"
+        ) {
+          return "ยกเลิกการยืนยันใน MetaMask แล้ว";
+        }
+
+        return err?.shortMessage ||
+          err?.reason ||
+          err?.message ||
+          "เกิดข้อผิดพลาด";
+      }
+
+      async function networkOK() {
+        const net = await provider.getNetwork();
+        const yes = net.chainId === SEPOLIA_CHAIN_ID;
+
+        $("chain").textContent = yes
+          ? "Sepolia (11155111)"
+          : `ผิดเครือข่าย (Chain ID ${net.chainId})`;
+
+        $("networkBadge").textContent = yes
+          ? "● Sepolia Testnet"
+          : "⚠ Switch to Sepolia";
+
+        return yes;
+      }
+
+      async function switchToSepolia() {
+        try {
+          await window.ethereum.request({
+            method: "wallet_switchEthereumChain",
+            params: [{ chainId: "0xaa36a7" }]
+          });
+        } catch (err) {
+          if (err.code === 4902) {
+            await window.ethereum.request({
+              method: "wallet_addEthereumChain",
+              params: [{
+                chainId: "0xaa36a7",
+                chainName: "Sepolia",
+                nativeCurrency: {
+                  name: "Sepolia Ether",
+                  symbol: "ETH",
+                  decimals: 18
+                },
+                rpcUrls: [
+                  "https://ethereum-sepolia-rpc.publicnode.com"
+                ],
+                blockExplorerUrls: [
+                  "https://sepolia.etherscan.io"
+                ]
+              }]
+            });
+          } else {
+            throw err;
+          }
+        }
+      }
+
+      async function connect() {
+        if (!window.ethereum) {
+          status("ไม่พบ MetaMask กรุณาติดตั้ง MetaMask", "error");
+          return;
+        }
+
+        if (!window.ethers) {
+          status("โหลด ethers.js ไม่สำเร็จ", "error");
+          return;
+        }
+
+        try {
+          busyState(true);
+
+          await window.ethereum.request({
+            method: "eth_requestAccounts"
+          });
+
+          provider = new ethers.BrowserProvider(window.ethereum);
+
+          if (!await networkOK()) {
+            status("กำลังเปลี่ยนเครือข่ายไป Sepolia...");
+            await switchToSepolia();
+
+            provider = new ethers.BrowserProvider(window.ethereum);
+          }
+
+          if (!await networkOK()) {
+            throw new Error("กรุณาเลือก Sepolia");
+          }
+
+          signer = await provider.getSigner();
+          connectedAddress = await signer.getAddress();
+
+          const code = await provider.getCode(CONTRACT_ADDRESS);
+
+          if (code === "0x") {
+            throw new Error("ไม่พบ Bank Contract บน Sepolia");
+          }
+
+          contract = new ethers.Contract(
+            CONTRACT_ADDRESS,
+            ABI,
+            signer
+          );
+
+          $("walletAddress").textContent =
+            connectedAddress.slice(0, 8) +
+            "…" +
+            connectedAddress.slice(-6);
+
+          $("walletAddress").title = connectedAddress;
+
+          $("walletState").textContent = "เชื่อมต่อแล้ว";
+          $("connectBtn").textContent = "เชื่อมต่อแล้ว ✓";
+
+          status("เชื่อมต่อ MetaMask สำเร็จ", "success");
+
+          await refreshBalance();
+
+        } catch (err) {
+          contract = null;
+          $("walletState").textContent = "ยังไม่เชื่อมต่อ";
+          status(cleanError(err), "error");
+        } finally {
+          busyState(false);
+        }
+      }
+
+      async function refreshBalance() {
+        if (!contract) return;
+
+        if (!await networkOK()) {
+          ready(false);
+          status("กรุณาเปลี่ยนเป็น Sepolia", "error");
+          return;
+        }
+
+        try {
+          const balance = await infuraContract.methods
+            .checkBlance()
+            .call({ from: connectedAddress });
+
+          $("balance").innerHTML =
+            `${infuraWeb3.utils.fromWei(balance.toString(), "ether")} <small>ETH</small>`;
+
+          status("ตรวจสอบยอดเงินสำเร็จ", "success");
+
+        } catch (err) {
+          status("ตรวจสอบยอดไม่ได้: " + cleanError(err), "error");
+        }
+      }
+
+      function amountWei() {
+        const value = $("amount").value.trim();
+
+        if (!/^\d+(\.\d{1,18})?$/.test(value)) {
+          throw new Error("กรุณาใส่จำนวน ETH เช่น 0.001");
+        }
+
+        const wei = ethers.parseEther(value);
+
+        if (wei <= 0n) {
+          throw new Error("จำนวนเงินต้องมากกว่า 0");
+        }
+
+        return wei;
+      }
+
+      async function submit(kind) {
+        if (!contract || busy) return;
+
+        try {
+          if (!await networkOK()) {
+            throw new Error("กรุณาเลือก Sepolia");
+          }
+
+          const wei = amountWei();
+
+          busyState(true);
+          $("txLink").replaceChildren();
+
+          status(
+            kind === "deposit"
+              ? "กำลังรออนุมัติฝากเงินใน MetaMask..."
+              : "กำลังรออนุมัติถอนเงินใน MetaMask..."
+          );
+
+          const tx = kind === "deposit"
+            ? await contract.deposit({ value: wei })
+            : await contract.withdraw(wei);
+
+          status("ส่งธุรกรรมแล้ว กำลังรอยืนยัน...");
+
+          const a = document.createElement("a");
+
+          a.href = `https://sepolia.etherscan.io/tx/${tx.hash}`;
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+          a.textContent = "ดูธุรกรรมบน Sepolia Etherscan";
+
+          $("txLink").appendChild(a);
+
+          const receipt = await tx.wait();
+
+          if (receipt?.status !== 1) {
+            throw new Error("ธุรกรรมไม่สำเร็จ");
+          }
+
+          status(
+            kind === "deposit"
+              ? "ฝากเงินสำเร็จ ✓"
+              : "ถอนเงินสำเร็จ ✓",
+            "success"
+          );
+
+          await refreshBalance();
+
+          $("amount").value = "";
+
+        } catch (err) {
+          status(cleanError(err), "error");
+        } finally {
+          busyState(false);
+        }
+      }
+
+      $("connectBtn").addEventListener("click", connect);
+
+      $("balanceBtn").addEventListener("click", async () => {
+        busyState(true);
+
+        try {
+          await refreshBalance();
+        } finally {
+          busyState(false);
+        }
+      });
+
+      $("depositBtn").addEventListener("click", () => {
+        submit("deposit");
+      });
+
+      $("withdrawBtn").addEventListener("click", () => {
+        submit("withdraw");
+      });
+
+      if (window.ethereum?.on) {
+        window.ethereum.on("accountsChanged", () => {
+          location.reload();
+        });
+
+        window.ethereum.on("chainChanged", () => {
+          location.reload();
+        });
+      }
+    })();
+  </script>
+</body>
+
+</html>
